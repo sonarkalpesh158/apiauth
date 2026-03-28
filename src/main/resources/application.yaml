@@ -1,3 +1,41 @@
 spring:
   application:
     name: apiauth
+  
+  # JPA and Hibernate Configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  
+  # DataSource Configuration (Using H2 for development)
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+  
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# JWT Configuration Properties
+jwt:
+  secret: your-secret-key-change-this-in-production-with-a-strong-key-at-least-256-bits-long
+  expiration: 86400000  # 24 hours in milliseconds
+  refresh-expiration: 604800000  # 7 days in milliseconds
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.api.auth: DEBUG
+    org.springframework.security: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
